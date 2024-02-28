@@ -20,3 +20,18 @@ func ValidateCard(number string) bool {
 	}
 	return checkSum%10 == 0
 }
+
+func CardNetwork(number string) string {
+	switch number[0] - '0' {
+	case 2, 5:
+		return "Mastercard"
+	case 3:
+		return "American Express"
+	case 4:
+		return "Visa"
+	case 6:
+		return "Discover"
+	default:
+		return "Unknown network"
+	}
+}
