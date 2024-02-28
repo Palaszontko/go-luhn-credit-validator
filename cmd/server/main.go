@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-
 	"github.com/Palaszontko/go-luhn-credit-validator/internal/luhn"
 )
 
@@ -26,7 +25,7 @@ func validateCardHandler(w http.ResponseWriter, r *http.Request) {
 	cardNetwork := luhn.CardNetwork(req.CardNumber)
 
 	response := responseStruct{
-		IsValid:    isValid,
+		IsValid:     isValid,
 		CardNetwork: cardNetwork,
 	}
 
@@ -42,7 +41,7 @@ func validateCardHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 type responseStruct struct {
-	IsValid    bool   `json:"isValid"`
+	IsValid     bool   `json:"isValid"`
 	CardNetwork string `json:"cardNetwork"`
 }
 
@@ -51,10 +50,9 @@ type validationRequest struct {
 }
 
 func main() {
-
 	http.HandleFunc("/validate", validateCardHandler)
 	log.Println("Server is listening on port 8080")
-	// Uruchom serwer na porcie 8080 i nasłuchuj na żądania
+	
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
